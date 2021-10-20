@@ -10,21 +10,16 @@ namespace Monopoly.Game
     {
         private Banker banker;
         private Jailer jailer;
-        private Players players;
+        private List<Player> players;
 
-        private Game(Banker banker, Jailer jailer, Players players) {
+        private Game(Banker banker, Jailer jailer, List<Player> players) {
             this.banker = banker;
             this.jailer = jailer;
             this.players = players;
         }
 
         public Game Initialize(List<Player> players) {
-
-            //List<Property> properties =
-            //read properties into the properties list
-            //properties = Dataaccess.DataAccess.ReadProperties();
-            //return new Game(players, properties);
-            return null;
+            return new Game(new Banker(), new Jailer(new List<Player>()), players);
         }
     }
 }

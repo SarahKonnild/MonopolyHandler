@@ -13,8 +13,7 @@ namespace Monopoly.Game.Handlers
         }
 
         public enum ErrorCode {
-            PlayerAdded = 0,
-            PlayerAlreadyAdded = 1,
+            
         }
     }
 }
