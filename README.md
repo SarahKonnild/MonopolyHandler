@@ -1,0 +1,2 @@
+# MonopolyHandler
+I have created this program to accompany my Monopoly game, so that some processes can be automated better. It is by no means intended to replace the game, and the game handler will not feature e.g. a virtual copy of the game. It can therefore NOT be used without the real gameboard and cards. The contents of this game are based on "Monopoly: Super Electronic Banking" because I felt like there were some necessary gameplay mechanics lacking from the system that was made for that version of the game. 
