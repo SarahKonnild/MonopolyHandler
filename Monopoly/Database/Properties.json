@@ -1,0 +1,130 @@
+﻿[
+	{
+		"id": 1,
+		"name": "Finsensvej",
+		"type": 0,
+		"price": 60,
+		"baseRent": 30,
+		"fullRent": 60
+	},
+	{
+		"id": 2,
+		"name": "Peter Bangs Vej",
+		"type": 0,
+		"price": 60,
+		"baseRent": 30,
+		"fullRent": 60
+	},
+	{
+		"id": 3,
+		"name": "Jagtvej",
+		"type": 1,
+		"price": 100,
+		"baseRent": 50,
+		"fullRent": 100
+	},
+	{
+		"id": 4,
+		"name": "Falkoner Allé",
+		"type": 1,
+		"price": 100,
+		"baseRent": 50,
+		"fullRent": 100
+	},
+	{
+		"id": 5,
+		"name": "Strandboulevarden",
+		"type": 2,
+		"price": 140,
+		"baseRent": 70,
+		"fullRent": 140
+	},
+	{
+		"id": 6,
+		"name": "Classensgade",
+		"type": 2,
+		"price": 140,
+		"baseRent": 70,
+		"fullRent": 140
+	},
+	{
+		"id": 7,
+		"name": "H.C. Ørsteds Vej",
+		"type": 3,
+		"price": 180,
+		"baseRent": 90,
+		"fullRent": 180
+	},
+	{
+		"id": 8,
+		"name": "Rosenørns Allé",
+		"type": 3,
+		"price": 180,
+		"baseRent": 90,
+		"fullRent": 180
+	},
+	{
+		"id": 9,
+		"name": "Holmens Kanal",
+		"type": 4,
+		"price": 220,
+		"baseRent": 110,
+		"fullRent": 220
+	},
+	{
+		"id": 10,
+		"name": "Børsgade",
+		"type": 4,
+		"price": 220,
+		"baseRent": 110,
+		"fullRent": 220
+	},
+	{
+		"id": 11,
+		"name": "Studiestræde",
+		"type": 5,
+		"price": 260,
+		"baseRent": 130,
+		"fullRent": 260
+	},
+	{
+		"id": 12,
+		"name": "Krystalgade",
+		"type": 5,
+		"price": 260,
+		"baseRent": 130,
+		"fullRent": 260
+	},
+	{
+		"id": 13,
+		"name": "Langelinie",
+		"type": 6,
+		"price": 300,
+		"baseRent": 150,
+		"fullRent": 300
+	},
+	{
+		"id": 14,
+		"name": "Amaliegade",
+		"type": 6,
+		"price": 300,
+		"baseRent": 150,
+		"fullRent": 300
+	},
+	{
+		"id": 15,
+		"name": "Gammeltorv",
+		"type": 7,
+		"price": 350,
+		"baseRent": 180,
+		"fullRent": 350
+	},
+	{
+		"id": 16,
+		"name": "Nytorv",
+		"type": 7,
+		"price": 400,
+		"baseRent": 200,
+		"fullRent": 400
+	},
+]

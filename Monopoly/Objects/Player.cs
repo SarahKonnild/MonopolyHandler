@@ -7,19 +7,21 @@ namespace Monopoly.Objects
 {
     public class Player
     {
+        public int id;
         public string name;
         public int money;
         public List<Property> properties;
-        //public Token token;
+        public Token token;
         public int score;
 
-        public Player(string name, int money, int score, List<Property> properties//, Token token
+        public Player(int id, string name, int money, int score, List<Property> properties, Token token
             ) {
+            this.id = id;
             this.name = name;
             this.money = money;
             this.score = score;
             this.properties = properties;
-            //this.token = token;
+            this.token = token;
         }
     }
 

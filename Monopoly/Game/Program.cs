@@ -1,14 +1,16 @@
 ﻿using System;
+using Monopoly.Game;
 
 namespace Monopoly
 {
-    public class Program
+    class Program
     {
-
+        public static Monopoly.Game.Game game;
+        public static DataAccess.DataAccess dataAccess;
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //game = game.Initialize();
         }
     }
 }
