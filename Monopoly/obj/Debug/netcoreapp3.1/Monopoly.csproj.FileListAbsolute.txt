@@ -1,4 +1,0 @@
-C:\Users\S_Pra\Documents\GitHub\Monopoly\Monopoly\bin\Debug\netcoreapp3.1\Monopoly.exe
-C:\Users\S_Pra\Documents\GitHub\Monopoly\Monopoly\obj\Debug\netcoreapp3.1\Monopoly.csprojAssemblyReference.cache
-C:\Users\S_Pra\Documents\GitHub\Monopoly\Monopoly\obj\Debug\netcoreapp3.1\Monopoly.AssemblyInfoInputs.cache
-C:\Users\S_Pra\Documents\GitHub\Monopoly\Monopoly\obj\Debug\netcoreapp3.1\Monopoly.AssemblyInfo.cs
