@@ -15,15 +15,14 @@ namespace MonopolyHandler.Objects
             this.propertyCommand = propertyCommand;
         }
 
-        public bool AddPlayer(string name, TokenType token) {
-            bool result = playerCommand.CreatePlayer(name, (int) token);
-            if (result)
-            {
-                return true;
-            }
-            else {
-                return false;
-            }
+        public PlayerCommand GetPlayerCommand() {
+            return playerCommand;
         }
+
+        public PropertyCommand GetPropertyCommand() {
+            return propertyCommand;
+        }
+
+        
     }
 }

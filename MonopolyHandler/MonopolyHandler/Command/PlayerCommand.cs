@@ -8,20 +8,30 @@ namespace MonopolyHandler.Command
     class PlayerCommand
     {
         public List<Player> players;
-        public PlayerCommand() { 
-        
+        public PlayerCommand() {
+            players = new List<Player>();
         }
 
         public bool CreatePlayer(string name, int token) {
-            if (players.Exists(x => x.token.tokenType == (TokenType) token))
+            if (players.Count != 0)
             {
-                return false;
+                if (players.Exists(x => x.token.tokenType == (TokenType)token))
+                {
+                    return false;
+                }
+                else
+                {
+                    Player player = new Player(name, new Token((TokenType)token, (BonusTypes)token), 1500, new List<Property>(), false);
+                    players.Add(player);
+                    return true;
+                }
             }
-            else
-            {
+            else {
                 Player player = new Player(name, new Token((TokenType)token, (BonusTypes)token), 1500, new List<Property>(), false);
+                players.Add(player);
                 return true;
             }
+            
         }
 
         public void AddFunds(Player player, int sum) {
@@ -46,6 +56,11 @@ namespace MonopolyHandler.Command
 
         public void GetOutOfPrison(Player player) {
             player.inPrison = false;
+        }
+
+        public List<Player> GetListOfPlayers()
+        {
+            return players;
         }
     }
 }
