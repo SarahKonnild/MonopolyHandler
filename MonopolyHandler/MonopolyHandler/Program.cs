@@ -14,6 +14,7 @@ namespace MonopolyHandler
         static void Main(string[] args)
         {
             game = new Game(new PlayerCommand(), new PropertyCommand());
+            game.GetPropertyCommand().LoadProperties();
 
             Console.WriteLine("Welcome to the Monopoly Handler");
             Console.WriteLine("Press Enter to start a new game...");
@@ -32,17 +33,18 @@ namespace MonopolyHandler
 
             Console.WriteLine("Here are the players:");
             for (int i = 0; i < players.Count; i++) {
-                Console.WriteLine(players[i].name + " has token: " + players[i].token + " and savings: " + players[i].holdings + " Monopoly Money");
+                Console.WriteLine(players[i].name + " has token: " + players[i].token.tokenType + " and savings: " + players[i].holdings + " Monopoly Money");
             }
             Console.WriteLine("Is the above information correct? Please enter Y/N");
-            var answer = Console.ReadKey();
-            if (answer.KeyChar != 89)
+            var answer = Console.ReadLine();
+            if (answer == "y" || answer == "Y")
             {
-                GameSetup();
-            }
-            else {
                 Console.WriteLine("Welcome to Monopoly!");
                 Console.WriteLine("This handler will idly await your input, to minimize the interference with the physical play");
+                PlayerRound();
+            }
+            else {
+                GameSetup();
             }
         }
 
@@ -66,6 +68,10 @@ namespace MonopolyHandler
         }
 
         private static void RoundHandler(Player player) {
+            List<Player> otherPlayers = new List<Player>(players);
+            otherPlayers.Remove(player);
+
+
             if (player.inPrison == false)
             {
                 Console.WriteLine("You can do the following actions:");
@@ -75,11 +81,12 @@ namespace MonopolyHandler
                 Console.WriteLine("Press 3 if you want to buy a property");
                 Console.WriteLine("Press 4 if you want to trade a property with someone");
                 Console.WriteLine("Press 5 if you are travelling somewhere");
+                Console.WriteLine("Press 6 to transfer money to another player");
 
                 var input = Console.ReadLine();
 
                 //Switch case? Or If-statements? Choices choices. Polishing later.
-                if (input == "0" || input == "1" || input == "2" || input == "3" || input == "4" || input == "5")
+                if (input == "0" || input == "1" || input == "2" || input == "3" || input == "4" || input == "5" || input == "6")
                 {
                     if (input == "0")
                     {
@@ -92,6 +99,7 @@ namespace MonopolyHandler
                     {
                         game.GetPlayerCommand().SendToPrison(player);
                         Console.WriteLine("Oh no! " + player.name + " is now in prison!");
+                        PlayerRound();
                     }
                     else if (input == "2")
                     {
@@ -101,33 +109,160 @@ namespace MonopolyHandler
                     {
                         List<Property> availableProperties = game.GetPropertyCommand().properties;
                         Console.WriteLine("Which property will you buy?");
-                        for (int i = 0; availableProperties.Count < i; i++)
+                        for (int i = 0; i < availableProperties.Count; i++)
                         {
                             Console.WriteLine(i + ": " + availableProperties[i].name);
-                            var answer = int.Parse(Console.ReadLine());
-                            if (answer >= 0 || answer <= availableProperties.Count)
-                            {
-                                game.GetPlayerCommand().AddProperty(player, availableProperties[answer]);
-                                Console.WriteLine("Property was added!");
-                            }
-                            else
-                            {
-                                Console.WriteLine("Invalid input, please try again...");
-                                RoundHandler(player);
-                            }
+                        }
+                        var answer = int.Parse(Console.ReadLine());
+                        if (answer >= 0 || answer <= availableProperties.Count)
+                        {
+                            game.GetPlayerCommand().AddProperty(player, availableProperties[answer]);
+                            game.GetPropertyCommand().SellProperty(availableProperties[answer]);
+                            Console.WriteLine("Property was added!");
+                            Console.WriteLine(player.name + " now holds the following properties: ");
 
+                            for (int i = 0; i < player.properties.Count; i++)
+                            {
+                                Console.WriteLine(player.properties[i].name);
+                            }
+                            PlayerRound();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input, please try again...");
+                            RoundHandler(player);
                         }
                     }
                     else if (input == "4")
                     {
-                        //choose who to trade with
-                        //Choose own property
-                        //choose if trading money, property or both
-                        //trade - create trade in PropertyCommands.
+                        if (otherPlayers.Count > 0)
+                        {
+                            Console.WriteLine("Who would you like to swap properties with?");
+                            for (int i = 0; i < otherPlayers.Count; i++)
+                            {
+                                Console.WriteLine(i + ": " + otherPlayers[i].name);
+                            }
+                            var answer = int.Parse(Console.ReadLine());
+                            if (answer >= 0 && answer <= otherPlayers.Count)
+                            {
+                                Player receiver = otherPlayers[answer];
+                                if (receiver.properties.Count > 0)
+                                {
+                                    Property property1;
+                                    Property property2;
+                                    Console.WriteLine("Which property would " + player.name + " like to swap with?");
+                                    for (int j = 0; j < player.properties.Count; j++)
+                                    {
+                                        Console.WriteLine(j + ": " + player.properties[j].name);
+                                    }
+                                    var prop1 = int.Parse(Console.ReadLine());
+                                    if (prop1 >= 0 && prop1 <= player.properties.Count)
+                                    {
+                                        property1 = player.properties[prop1];
+
+                                        Console.WriteLine("Which property would " + receiver.name + " like to swap with?");
+                                        for (int k = 0; k < receiver.properties.Count; k++)
+                                        {
+                                            Console.WriteLine(k + ": " + receiver.properties[k].name);
+                                        }
+                                        var prop2 = int.Parse(Console.ReadLine());
+                                        if (prop2 >= 0 && prop2 <= receiver.properties.Count)
+                                        {
+                                            property2 = receiver.properties[prop2]; //out of range exception
+
+                                            Console.WriteLine("So " + player.name + " receives property " + property2.name);
+                                            Console.WriteLine("and " + receiver.name + "receives property " + property1.name);
+                                            Console.WriteLine("Is this correct? Please enter Y/N");
+                                            var result = Console.ReadLine();
+                                            if (result == "y" || result == "Y")
+                                            {
+                                                game.GetPlayerCommand().SwapProperties(player, receiver, property1, property2);
+                                                Console.WriteLine("The swap is complete!");
+                                                Console.WriteLine("Player " + player.name + " now has properties:");
+                                                for (int l = 0; l < player.properties.Count; l++)
+                                                {
+                                                    Console.WriteLine(player.properties[l].name);
+                                                }
+                                                Console.WriteLine("Player " + receiver.name + " now has properties:");
+                                                for (int l = 0; l < receiver.properties.Count; l++)
+                                                {
+                                                    Console.WriteLine(receiver.properties[l].name);
+                                                }
+                                                PlayerRound();
+                                            }
+                                            else
+                                            {
+                                                PlayerRound();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Invalid input, please try again.");
+                                            PlayerRound();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Invalid input, please try again.");
+                                        PlayerRound();
+                                    }
+
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("No other players to transfer to!");
+                            PlayerRound();
+                        }
                     }
-                    else if (input == "5") {
+                    else if (input == "5")
+                    {
                         game.GetPlayerCommand().RemoveFunds(player, 50);
                         Console.WriteLine("You can now travel anywhere you please! Bon voyage!");
+                        PlayerRound();
+                    }
+                    else if (input == "6")
+                    {
+                        if (otherPlayers.Count > 0)
+                        {
+                            Console.WriteLine("Who would you like to transfer money to?");
+                            for (int i = 0; i < otherPlayers.Count; i++) { 
+                                Console.WriteLine(i + ": " + otherPlayers[i].name);
+                            }
+                            var answer = int.Parse(Console.ReadLine());
+                            if (answer >= 0 && answer <= otherPlayers.Count)
+                            {
+                                Console.WriteLine("How much would you like to transfer?");
+                                var amount = int.Parse(Console.ReadLine());
+                                if (amount > 0 && amount <= player.holdings)
+                                {
+                                    Player receiver = otherPlayers[answer];
+                                    game.GetPlayerCommand().AddFunds(receiver, amount);
+                                    game.GetPlayerCommand().RemoveFunds(player, amount);
+
+                                    Console.WriteLine("Money was transferred!");
+                                    Console.WriteLine("Player holdings are now:");
+                                    Console.WriteLine(player.name + " with holdings: " + player.holdings);
+                                    Console.WriteLine(receiver.name + " with holdings: " + receiver.holdings);
+                                }
+                                else
+                                {
+                                    //I wanna create more methods that can ensure that the process doesn't start all over again each time. 
+                                    Console.WriteLine("Invalid amount, please try again.");
+                                    PlayerRound();
+                                }
+                            }
+                            else {
+                                Console.WriteLine("That is not a player, please try again.");
+                                PlayerRound();
+                            }
+                        }
+                        else {
+                            Console.WriteLine("No other players to transfer to!");
+                            PlayerRound();
+                        }
+
                     }
                 }
             }
@@ -148,6 +283,8 @@ namespace MonopolyHandler
                     game.GetPlayerCommand().RemoveFunds(player, 200);
                     game.GetPlayerCommand().GetOutOfPrison(player);
                     Console.WriteLine("Congrats! You are out of prison now!");
+                    Console.WriteLine(player.name + "'s holdings are now: " + player.holdings);
+                    PlayerRound();
                 }
                 else {
                     Console.WriteLine("Did you succeed? Please enter Y/N");
@@ -160,6 +297,7 @@ namespace MonopolyHandler
                     else {
                         game.GetPlayerCommand().GetOutOfPrison(player);
                         Console.WriteLine("Congrats! You are out of prison now!");
+                        PlayerRound();
                     }
                 }
             }

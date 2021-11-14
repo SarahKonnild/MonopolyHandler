@@ -18,5 +18,13 @@ namespace MonopolyHandler.Command
         public async void LoadProperties() {
             properties = await propertyQueries.LoadProperties();
         }
+
+        public async void SellProperty(Property property) {
+            properties.Remove(property);
+        }
+
+        public async void AddProperty(Property property) {
+            properties.Add(property);
+        }
     }
 }
