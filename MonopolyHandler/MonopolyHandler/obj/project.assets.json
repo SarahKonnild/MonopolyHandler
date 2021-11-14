@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\S_Pra\\OneDrive\\Dokumenter\\Projects\\MonopolyHandler\\MonopolyHandler\\MonopolyHandler\\MonopolyHandler.csproj",
+      "projectUniqueName": "C:\\Users\\S_Pra\\Documents\\GitHub\\Monopoly\\MonopolyHandler\\MonopolyHandler\\MonopolyHandler.csproj",
       "projectName": "MonopolyHandler",
-      "projectPath": "C:\\Users\\S_Pra\\OneDrive\\Dokumenter\\Projects\\MonopolyHandler\\MonopolyHandler\\MonopolyHandler\\MonopolyHandler.csproj",
+      "projectPath": "C:\\Users\\S_Pra\\Documents\\GitHub\\Monopoly\\MonopolyHandler\\MonopolyHandler\\MonopolyHandler.csproj",
       "packagesPath": "C:\\Users\\S_Pra\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\S_Pra\\OneDrive\\Dokumenter\\Projects\\MonopolyHandler\\MonopolyHandler\\MonopolyHandler\\obj\\",
+      "outputPath": "C:\\Users\\S_Pra\\Documents\\GitHub\\Monopoly\\MonopolyHandler\\MonopolyHandler\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\S_Pra\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -55,6 +55,16 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.1.10, 3.1.10]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[3.1.21, 3.1.21]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"

@@ -1,4 +1,3 @@
-C:\Users\S_Pra\Documents\GitHub\Monopoly\MonopolyHandler\MonopolyHandler\obj\Debug\netcoreapp3.1\MonopolyHandler.csprojAssemblyReference.cache
 C:\Users\S_Pra\Documents\GitHub\Monopoly\MonopolyHandler\MonopolyHandler\obj\Debug\netcoreapp3.1\MonopolyHandler.AssemblyInfoInputs.cache
 C:\Users\S_Pra\Documents\GitHub\Monopoly\MonopolyHandler\MonopolyHandler\obj\Debug\netcoreapp3.1\MonopolyHandler.AssemblyInfo.cs
 C:\Users\S_Pra\Documents\GitHub\Monopoly\MonopolyHandler\MonopolyHandler\obj\Debug\netcoreapp3.1\MonopolyHandler.csproj.CoreCompileInputs.cache
@@ -29,3 +28,5 @@ C:\Users\S_Pra\OneDrive\Dokumenter\Projects\MonopolyHandler\MonopolyHandler\Mono
 C:\Users\S_Pra\OneDrive\Dokumenter\Projects\MonopolyHandler\MonopolyHandler\MonopolyHandler\obj\Debug\netcoreapp3.1\MonopolyHandler.dll
 C:\Users\S_Pra\OneDrive\Dokumenter\Projects\MonopolyHandler\MonopolyHandler\MonopolyHandler\obj\Debug\netcoreapp3.1\MonopolyHandler.pdb
 C:\Users\S_Pra\OneDrive\Dokumenter\Projects\MonopolyHandler\MonopolyHandler\MonopolyHandler\obj\Debug\netcoreapp3.1\MonopolyHandler.genruntimeconfig.cache
+C:\Users\S_Pra\Documents\GitHub\Monopoly\MonopolyHandler\MonopolyHandler\obj\Debug\netcoreapp3.1\MonopolyHandler.csproj.AssemblyReference.cache
+C:\Users\S_Pra\Documents\GitHub\Monopoly\MonopolyHandler\MonopolyHandler\obj\Debug\netcoreapp3.1\MonopolyHandler.GeneratedMSBuildEditorConfig.editorconfig

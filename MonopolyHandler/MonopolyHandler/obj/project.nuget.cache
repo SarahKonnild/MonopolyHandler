@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "uyHgNip1a58/g2blcWO6j4qYuqcueTs4N36OGCrEkdkl4NehIn5pOleKyVYA8TopPo0uqPnZOFxzOU+I5hcV5Q==",
+  "dgSpecHash": "9ThCicSarAclAs9jXrKU3tTQFZut1UhR3DuhbngkoQTL2x6sPIPCmN2Gqpb1MiCOODT8zydp+ESb6J5EuMVyyw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\S_Pra\\OneDrive\\Dokumenter\\Projects\\MonopolyHandler\\MonopolyHandler\\MonopolyHandler\\MonopolyHandler.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\S_Pra\\Documents\\GitHub\\Monopoly\\MonopolyHandler\\MonopolyHandler\\MonopolyHandler.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\S_Pra\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.21\\microsoft.netcore.app.host.win-x64.3.1.21.nupkg.sha512",
+    "C:\\Users\\S_Pra\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
+  ],
   "logs": []
 }

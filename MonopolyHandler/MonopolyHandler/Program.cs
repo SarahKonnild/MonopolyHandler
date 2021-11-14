@@ -77,7 +77,7 @@ namespace MonopolyHandler
                 Console.WriteLine("You can do the following actions:");
                 Console.WriteLine("Press 0 if you crossed start");
                 Console.WriteLine("Press 1 if you went to jail");
-                Console.WriteLine("Press 2 if you need a chance card");
+                Console.WriteLine("Press 2 if you got a chance card");
                 Console.WriteLine("Press 3 if you want to buy a property");
                 Console.WriteLine("Press 4 if you want to trade a property with someone");
                 Console.WriteLine("Press 5 if you are travelling somewhere");
@@ -103,7 +103,142 @@ namespace MonopolyHandler
                     }
                     else if (input == "2")
                     {
-                        //give a random chance card
+                        Console.WriteLine("Based on the chance card, what happened?");
+                        Console.WriteLine("Press 0 if you receive money");
+                        Console.WriteLine("Press 1 if you have to pay money");
+                        Console.WriteLine("Press 2 if you receive money from other players");
+                        Console.WriteLine("Press 3 if you must give money to other players");
+                        Console.WriteLine("Press 4 if you and another player of your liking receive money");
+                        Console.WriteLine("Press 5 if you go to prison");
+                        Console.WriteLine("Press 6 if you can send another player to prison");
+                        var answer = int.Parse(Console.ReadLine());
+                        if (answer == 0 || answer == 1 || answer == 2 || answer == 3 || answer == 4 || answer == 5 || answer == 6) {
+                            if (answer == 0)
+                            {
+                                Console.WriteLine("Please enter the amount to receive");
+                                var amount = int.Parse(Console.ReadLine());
+                                if (amount > 0)
+                                {
+                                    game.GetPlayerCommand().AddFunds(player, amount);
+                                    Console.WriteLine(player.name + " now has: " + player.holdings);
+                                    PlayerRound();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid amount, please try again.");
+                                    PlayerRound();
+                                }
+
+                            }
+                            else if (answer == 1)
+                            {
+                                Console.WriteLine("Please enter the amount to pay");
+                                var amount = int.Parse(Console.ReadLine());
+                                if (amount > 0)
+                                {
+                                    game.GetPlayerCommand().RemoveFunds(player, amount);
+                                    Console.WriteLine(player.name + " now has: " + player.holdings);
+                                    PlayerRound();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid amount, please try again.");
+                                    PlayerRound();
+                                }
+                            }
+                            else if (answer == 2)
+                            {
+                                Console.WriteLine("Please enter the amount to pay");
+                                var amount = int.Parse(Console.ReadLine());
+                                if (amount > 0)
+                                {
+                                    for (int i = 0; i < otherPlayers.Count; i++)
+                                    {
+                                        game.GetPlayerCommand().RemoveFunds(otherPlayers[i], amount);
+                                        game.GetPlayerCommand().AddFunds(player, amount);
+                                        Console.WriteLine(otherPlayers[i].name + " now has: " + otherPlayers[i].holdings);
+                                    }
+                                    Console.WriteLine(player.name + " now has: " + player.holdings);
+                                    PlayerRound();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid amount, please try again.");
+                                    PlayerRound();
+                                }
+                            }
+                            else if (answer == 3)
+                            {
+                                Console.WriteLine("Please enter the amount to pay");
+                                var amount = int.Parse(Console.ReadLine());
+                                if (amount > 0)
+                                {
+                                    for (int i = 0; i < otherPlayers.Count; i++)
+                                    {
+                                        game.GetPlayerCommand().RemoveFunds(player, amount);
+                                        game.GetPlayerCommand().AddFunds(otherPlayers[i], amount);
+                                        Console.WriteLine(otherPlayers[i].name + " now has: " + otherPlayers[i].holdings);
+                                    }
+                                    Console.WriteLine(player.name + " now has: " + player.holdings);
+                                    PlayerRound();
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid amount, please try again.");
+                                    PlayerRound();
+                                }
+                            }
+                            else if (answer == 4)
+                            {
+                                Console.WriteLine("Choose another player to share the reward with.");
+                                for (int i = 0; i < otherPlayers.Count; i++)
+                                {
+                                    Console.WriteLine(i + ": " + otherPlayers[i].name);
+                                }
+                                var friend = int.Parse(Console.ReadLine());
+                                if (friend >= 0 && friend < otherPlayers.Count)
+                                {
+                                    Console.WriteLine("Choose the amount of money to give to each of you");
+                                    var amount = int.Parse(Console.ReadLine());
+                                    if (amount > 0)
+                                    {
+                                        game.GetPlayerCommand().AddFunds(player, amount);
+                                        game.GetPlayerCommand().AddFunds(otherPlayers[friend], amount);
+                                        Console.WriteLine(player.name + " now has: " + player.holdings);
+                                        Console.WriteLine(otherPlayers[friend].name + " now has: " + otherPlayers[friend].holdings);
+                                        PlayerRound();
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Invalid amount, please try again.");
+                                        PlayerRound();
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid amount, please try again.");
+                                    PlayerRound();
+                                }
+                            }
+                            else if (answer == 5)
+                            {
+                                game.GetPlayerCommand().SendToPrison(player);
+                                Console.WriteLine("Oh no! " + player.name + " is now in prison!");
+                                PlayerRound();
+                            }
+                            else if (answer == 6) {
+                                Console.WriteLine("Choose another player to send to prison");
+                                for (int i = 0; i < otherPlayers.Count; i++) {
+                                    Console.WriteLine(i + ": " + otherPlayers[i].name);
+                                }
+                                var newEnemy = int.Parse(Console.ReadLine());
+                                if (newEnemy >= 0 && newEnemy < otherPlayers.Count) {
+                                    game.GetPlayerCommand().SendToPrison(otherPlayers[newEnemy]);
+                                    Console.WriteLine("Oh no! " + otherPlayers[newEnemy].name + " is now in prison!");
+                                    PlayerRound();
+                                }
+                            }
+                        }
                     }
                     else if (input == "3")
                     {
